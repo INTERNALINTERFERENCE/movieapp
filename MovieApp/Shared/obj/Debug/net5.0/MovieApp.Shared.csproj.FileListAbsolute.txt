@@ -1,0 +1,12 @@
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\bin\Debug\net5.0\MovieApp.Shared.deps.json
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\bin\Debug\net5.0\MovieApp.Shared.dll
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\bin\Debug\net5.0\ref\MovieApp.Shared.dll
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\bin\Debug\net5.0\MovieApp.Shared.pdb
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.AssemblyInfoInputs.cache
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.AssemblyInfo.cs
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.dll
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\ref\MovieApp.Shared.dll
+C:\Users\Anton\Desktop\MovieApp\MovieApp\Shared\obj\Debug\net5.0\MovieApp.Shared.pdb

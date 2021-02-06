@@ -1,0 +1,110 @@
+﻿@page "/"
+@using Microsoft.JSInterop
+@using MovieApp.Shared.Services
+@using MovieApp.Shared.Models.MovieData
+@using TMDbLib.Objects.Movies;
+
+<body id="page-top">
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span>
+                </a>
+
+                <input type="text" class="form-control" placeholder="Search for..." @oninput="@OnSearch">
+                <div style="position: center; right:0;top:0;width:auto;height:510px;z-index:10">
+                    @foreach (var item in movies)
+                    {
+                        <span @onclick="_ => SelectMovie(item)" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;display: flex; color:black">@item.Title</span>
+                    }
+                </div>
+            </li>
+
+
+            <Categories />
+
+        </ul>
+        <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+                <div class="video-block section-padding">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="single-video-left">
+                                @BuildPlayer()
+                                <div class="single-video-title box mb-3">
+                                    <h2><a href="#">@Movie?.Title</a></h2>
+                                    <p class="mb-0"><i class="fas fa-eye"></i>@Movie?.ImdbId</p>
+                                </div>
+
+                                <div class="single-video-info-content box mb-3">
+                                    <h6>Cast:</h6>
+                                    @* TODO: CAST *@
+
+                                    <h6>Genres :</h6>
+                                    @* TODO: GENRES *@                                  
+                                    <h6>About :</h6>
+                                    <p>@Movie?.Overview</p>
+
+                                    <h6>Tags :</h6>
+                                    @* TODO: TAGS *@
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            @* TODO: CHAT *@
+                            <Chat />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+@code
+{
+
+    [Inject] public IJSRuntime Js { get; set; }
+    [Inject] public TmdbApi TmdbApi { get; set; }
+
+    [Parameter] public MovieDataDetail Movie { get; set; }
+
+    IEnumerable<MovieDataDetail> movies = Array.Empty<MovieDataDetail>();
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    => Js.InvokeVoidAsync("kinX").AsTask();
+
+    async Task OnSearch(ChangeEventArgs e)
+    {
+        var text = e.Value?.ToString();
+        if (text is not null && text.Length > 3)
+        {
+            movies = await TmdbApi.Search(text);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+    void SelectMovie(MovieDataDetail movie)
+    {
+        Movie = movie;
+        StateHasChanged();
+    }
+    int iterator;
+    public RenderFragment BuildPlayer() => builder =>
+    {
+        builder.OpenElement(iterator++, "div");
+        builder.AddAttribute(iterator++, "Id", "video");
+        builder.OpenElement(iterator++, "div");
+        builder.AddAttribute(iterator++, "Id", "kin-x");
+        builder.AddAttribute(iterator++, "data-height", "640");
+        builder.AddAttribute(iterator++, "data-title", Movie?.Title);
+        builder.CloseElement();
+        builder.CloseElement();
+    };
+
+}

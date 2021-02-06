@@ -1,0 +1,31 @@
+﻿@using MovieApp.Shared.Services
+@using MovieApp.Shared.Models.MovieData
+
+        
+
+@code {
+
+    [Inject] public TmdbApi TmdbApi { get; set; }
+
+    [Parameter] public MovieDataDetail Movie { get; set; }
+
+    IEnumerable<MovieDataDetail> movies = Array.Empty<MovieDataDetail>();
+
+
+
+    async Task OnSearch(ChangeEventArgs e)
+    {
+        var text = e.Value?.ToString();
+        if (text is not null && text.Length > 3)
+        {
+            movies = await TmdbApi.Search(text);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    void SelectMovie(MovieDataDetail movie)
+    {
+        Movie = movie;
+        StateHasChanged();
+    }
+}
