@@ -112,13 +112,14 @@ using TMDbLib.Objects.Movies;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 71 "C:\Users\Anton\Desktop\MovieApp\MovieApp\Client\Pages\Main.razor"
+#line 78 "C:\Users\Anton\Desktop\MovieApp\MovieApp\Client\Pages\Main.razor"
  
 
     [Inject] public IJSRuntime Js { get; set; }
     [Inject] public TmdbApi TmdbApi { get; set; }
 
     [Parameter] public MovieDataDetail Movie { get; set; }
+    [Parameter] public Movie Movie2 { get; set; }
 
     IEnumerable<MovieDataDetail> movies = Array.Empty<MovieDataDetail>();
 
@@ -134,9 +135,10 @@ using TMDbLib.Objects.Movies;
             await InvokeAsync(StateHasChanged);
         }
     }
-    void SelectMovie(MovieDataDetail movie)
+    async Task SelectMovie(MovieDataDetail movie)
     {
         Movie = movie;
+        Movie2 = await TmdbApi.GetDetailMovieInfo(movie.Id);
         StateHasChanged();
     }
     int iterator;
@@ -151,6 +153,8 @@ using TMDbLib.Objects.Movies;
         builder.CloseElement();
         builder.CloseElement();
     };
+
+
 
 
 #line default

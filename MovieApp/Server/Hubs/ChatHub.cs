@@ -25,7 +25,7 @@ namespace MovieApp.Server.Hubs
                 userLookup.Add(currentId, username);
                 await Clients.AllExcept(currentId).SendAsync(
                         Messages.RECEIVE,
-                        username, $"{username} joined the chat!"
+                        username, $"{username} присоединился к чату!"
                     );
             }
         }
@@ -47,7 +47,7 @@ namespace MovieApp.Server.Hubs
 
             userLookup.Remove(id);
             await Clients.AllExcept(Context.ConnectionId).SendAsync(
-                    Messages.RECEIVE, username, $"{username} has left the chat"
+                    Messages.RECEIVE, username, $"{username} вышел из чата!"
                 );
 
             await base.OnDisconnectedAsync(exception);

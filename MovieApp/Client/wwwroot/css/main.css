@@ -4,10 +4,16 @@ html {
     min-height: 100%;
 }
 
+@font-face {
+    font-family: Gilroy-Thin; /* Гарнитура шрифта */
+    src: url(/ttf/Gilroy-Thin.ttf); /* Путь к файлу со шрифтом */
+}
+
 body {
-    background-color: #fafafa;
-    color: #888;
-    font-size: 13px;
+    color: black;
+    line-height: 1.38;
+    font-size: 16px;
+    font-family: Gilroy-Thinб Arial,Tahoma,Verdana,sans-serif;
     height: 100%;
 }
 

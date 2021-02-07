@@ -27,6 +27,9 @@ namespace MovieApp.Shared.Services
                 ReleaseDate = x.ReleaseDate,
                 Popularity = x.Popularity
             }))
-            .Unwrap();       
+            .Unwrap();
+
+        public Task<Movie> GetDetailMovieInfo(int id)
+            => _client.GetMovieAsync(id, MovieMethods.Credits | MovieMethods.Reviews | MovieMethods.ExternalIds);
     }
 }

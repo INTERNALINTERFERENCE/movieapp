@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\Anton\Desktop\MovieApp\MovieApp\Client\bin\Release\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\Anton\Desktop\MovieApp\MovieApp\Client\obj\Release\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>

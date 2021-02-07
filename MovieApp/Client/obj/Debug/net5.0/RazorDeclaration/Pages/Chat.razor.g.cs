@@ -110,7 +110,7 @@ using MovieApp.Client.Data;
     {
         if (string.IsNullOrWhiteSpace(username))
         {
-            message = "Please enter the name";
+            message = "Введите имя";
             return;
         }
 

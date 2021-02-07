@@ -10,12 +10,12 @@
     }
 </div> 
 
-<div class="content px-4">
+<div class="justify-content-xl-center">
     @if (!chatting)
     {
         <h2>Chat</h2>
 
-        <p>Enter your name to start chatting</p>
+        <p>Введите имя</p>
 
         <input type="text" maxlength="32" @bind="@username"/>
         <button @onclick="Main"><span class="oi oi-chat" aria-hidden="true"></span>Chat</button>
@@ -33,7 +33,7 @@
             @foreach(var item in messages)
             {
                 <div class="@item.CSS">
-                    <div class="user" style="color:forestgreen">@item.Username</div>
+                    <div class="user" style="color:forestgreen"><b>@item.Username</b></div>
                     <div class="user">@item.Body</div>
                 </div>
             }
@@ -58,7 +58,7 @@
     {
         if (string.IsNullOrWhiteSpace(username))
         {
-            message = "Please enter the name";
+            message = "Введите имя";
             return;
         }
 

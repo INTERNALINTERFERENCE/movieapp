@@ -10,13 +10,9 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Home</span>
-                </a>
-
-                <input type="text" class="form-control" placeholder="Search for..." @oninput="@OnSearch">
-                <div style="position: center; right:0;top:0;width:auto;height:510px;z-index:10">
+                
+                <input type="text" title="Пожалуйста, заполните это поле" class="form-control" placeholder="Название фильма:" @oninput="@OnSearch">
+                <div style="position: center; right:0;top:0;width:auto;height:620px;z-index:10">
                     @foreach (var item in movies)
                     {
                         <span @onclick="_ => SelectMovie(item)" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;display: flex; color:black">@item.Title</span>
@@ -25,7 +21,16 @@
             </li>
 
 
-            <Categories />
+            @*<Categories />*@
+            <li class="nav-item channel-sidebar-list">
+                <ul>
+                    <li>
+                        <a href="https://www.imdb.com/title/@Movie2?.ExternalIds.ImdbId/?ref_=hm_tpks_tt_5_pd_tp1_cp">
+                            <img alt="" height="64" src="/icons/iconfinder_imdb_43153.png"> Узнать больше информации на Imdb
+                        </a>
+                    </li>                   
+                </ul>
+            </li>
 
         </ul>
         <div id="content-wrapper">
@@ -37,20 +42,22 @@
                                 @BuildPlayer()
                                 <div class="single-video-title box mb-3">
                                     <h2><a href="#">@Movie?.Title</a></h2>
-                                    <p class="mb-0"><i class="fas fa-eye"></i>@Movie?.ImdbId</p>
+                                    <p class="mb-0"></p>
                                 </div>
 
                                 <div class="single-video-info-content box mb-3">
-                                    <h6>Cast:</h6>
-                                    @* TODO: CAST *@
 
-                                    <h6>Genres :</h6>
-                                    @* TODO: GENRES *@                                  
-                                    <h6>About :</h6>
+                                    @*<h6>Cast:</h6>*@
+                                    @* TODO: CAST *@
+                                    
+                                    @*<h6>Genres :</h6>*@
+                                    @* TODO: GENRES *@   
+                                                                        
                                     <p>@Movie?.Overview</p>
 
-                                    <h6>Tags :</h6>
+                                    @*<h6>Tags :</h6>*@
                                     @* TODO: TAGS *@
+                                    
 
                                 </div>
                             </div>
@@ -74,6 +81,7 @@
     [Inject] public TmdbApi TmdbApi { get; set; }
 
     [Parameter] public MovieDataDetail Movie { get; set; }
+    [Parameter] public Movie Movie2 { get; set; }
 
     IEnumerable<MovieDataDetail> movies = Array.Empty<MovieDataDetail>();
 
@@ -89,9 +97,10 @@
             await InvokeAsync(StateHasChanged);
         }
     }
-    void SelectMovie(MovieDataDetail movie)
+    async Task SelectMovie(MovieDataDetail movie)
     {
         Movie = movie;
+        Movie2 = await TmdbApi.GetDetailMovieInfo(movie.Id);
         StateHasChanged();
     }
     int iterator;
@@ -106,5 +115,7 @@
         builder.CloseElement();
         builder.CloseElement();
     };
+
+
 
 }
